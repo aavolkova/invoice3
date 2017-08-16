@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Item Invoice2</title>
+</head>
+<body>
+<!--a comment-->
+<form action="#"
+      th:action="@{/addItem}"
+      th:object="${newItem}"
+      method="post">
+    <ul>
+        <input type="hidden" th:field="*{idItem}"/>
+
+        Description: <input th:type="text" th:field="*{description}"/> <br />
+        <span th:if="${#fields.hasErrors('description')}"
+              th:errors="*{description}"></span><br />
+
+        Price: <input th:type="text" th:field="*{price}"/><br />
+        <span th:if="${#fields.hasErrors('price')}"
+              th:errors="*{price}"></span><br />
+
+        Quantity: <input th:type="text" th:field="*{quantity}"/><br />
+        <span th:if="${#fields.hasErrors('quantity')}"
+              th:errors="*{quantity}"></span><br />
+
+        <!--Tax Price: <input th:type="text" th:field="*{taxPrice}"/><br />-->
+        <!--<span th:if="${#fields.hasErrors('taxPrice')}"-->
+              <!--th:errors="*{taxPrice}"></span><br />-->
+
+        <!--Total Price: <input th:type="text" th:field="*{totalPrice}"/><br />-->
+        <!--<span th:if="${#fields.hasErrors('totalPrice')}"-->
+              <!--th:errors="*{totalPrice}"></span><br />-->
+
+
+    </ul>
+
+    <input type="submit" value="Add  Item"/> <input type="reset" value="Clear Form"/>
+
+</form>
+
+</body>
+</html>
