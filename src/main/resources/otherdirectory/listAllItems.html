@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Items Invoice2</title>
+
+    <!--adding in out own css-->
+    <link href="additionalcss.css" rel="stylesheet">
+</head>
+<body>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td><b>Item Id</p></b></td>
+        <td><b>Item Description</p></b></td>
+        <td><b>Price</p></b></td>
+        <td><b>Quty</p></b></td>
+        <td><b>Tax Price</p></b></td>
+        <td><b>Total Price</p></b></td>
+        <td><b>Actions</b></td>
+    </tr>
+
+
+    <!--a comment-->
+    <!--iterate through all the items-->
+    <th:block th:each="i:${allItems}">
+        <tr>
+            <td><p th:text="${i.idItem}"></p></td>
+            <td><p th:text="${i.description}"></p></td>
+            <td><p th:text="${i.price}"></p></td>
+            <td>
+                <div th:class="((${i.quantity} &lt;0)? lowQuantity : normalQuantity)">
+                    <p th:text="${i.quantity}"></p>
+                </div>
+            </td>
+
+            <td><p th:text="${i.taxPrice}"></p></td>
+            <td><p th:text="${i.totalPrice}"></p></td>
+            <td>
+                <a th:href="@{/update/{id} (id=${i.idItem})}">Update</a> -
+                <a th:href="@{/delete/{id} (id=${i.idItem})}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<form action="/addItem">
+    <input type="submit" value="Add Another Item">
+</form>
+<form action="/seeTransactions">
+    <input type="submit" value="See Transactions">
+</form>
+<form action="/">
+    <input type="submit" value="Go Home">
+</form>
+</body>
+</html>
